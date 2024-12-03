@@ -14,8 +14,8 @@ class Menu():
             },
             "font": pygame.font.SysFont("Century Gothic", 40)
         }
-        self.button_start = {"text": "старт", "font":self.general_param_buttons["font"], "func":lambda: print("start"), "color":self.general_param_buttons["color"]}
-        self.button_sett = {"text": "настройки", "font":self.general_param_buttons["font"], "func":lambda: print("sett"), "color":self.general_param_buttons["color"]}
+        self.button_start = {"text": "старт", "font":self.general_param_buttons["font"], "func": lambda: print("start"), "color":self.general_param_buttons["color"]} # self.parent.game_start
+        self.button_sett = {"text": "настройки", "font":self.general_param_buttons["font"], "func":lambda: print("settings") , "color":self.general_param_buttons["color"]}
         self.button_quit = {"text": "выход", "font":self.general_param_buttons["font"], "func":self.parent.game_quit, "color":self.general_param_buttons["color"]}
         self.array_buttons = [self.button_start, self.button_sett, self.button_quit]
 

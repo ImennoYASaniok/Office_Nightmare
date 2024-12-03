@@ -55,6 +55,9 @@ class Main():
     def game_quit(self):
         self.running = 0
 
+    def game_start(self):
+        self.type_display = "game"
+
     def show_menu(self):
         while self.running and self.type_display == "menu":
             events = pygame.event.get()
@@ -68,6 +71,19 @@ class Main():
             pygame_widgets.update(events)
             pygame.display.update()
 
+    def show_game(self):
+        while self.running and self.type_display == "game":
+            events = pygame.event.get()
+            self.clock.tick(self.fps)
+
+            self.display.fill(self.colors["dark"])
+
+            for event in events:
+                if event.type == pygame.QUIT:
+                    self.running = False
+            pygame_widgets.update(events)
+            pygame.display.update()
+
 if __name__ == "__main__":
     menu = Main()
-    if menu.type_display == "menu": menu.show_menu()
+    menu.show_menu()
