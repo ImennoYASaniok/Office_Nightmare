@@ -4,7 +4,10 @@ class Menu():
     def __init__(self, parent, base_color):
         self.base_color = base_color
         self.parent = parent
+        self.init_butons()
+        self.init_label_text()
 
+    def init_butons(self):
         self.general_param_buttons = {
             "color": {
                 "base": self.base_color["base1"],
@@ -27,3 +30,12 @@ class Menu():
         for key in self.array_buttons[0]: self.buttons[key+"s"] = list(map(lambda b: b[key], self.array_buttons))
         print(*list(map(lambda x: f"{x[0]}: ({len(x[1]) if type(x[1]) != int else None}) {x[1]}", self.buttons.items())), sep="\n")
 
+    def init_label_text(self):
+        self.general_param_text_label = {
+            "color": {
+                "base": self.base_color["light"],
+                "dark": self.base_color["dark"],
+            },
+
+        }
+        self.text_label_title = { "coords": (600, 200), "text":"Office Nightmare", "font": pygame.font.SysFont("Century Gothic", 80), "color":self.general_param_text_label["color"]["base"] }

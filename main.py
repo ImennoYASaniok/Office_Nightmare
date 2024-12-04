@@ -24,6 +24,8 @@ class Main():
             "dark": (67, 40, 24)
         }
 
+        self.display.fill(self.colors["dark"])
+
         self.menu = Menu(self, self.colors)
         self.button(coords=self.menu.buttons["coords"],
                     layout=self.menu.buttons["layout"],
@@ -31,8 +33,11 @@ class Main():
                     fonts=self.menu.buttons["fonts"],
                     colors=self.menu.buttons["colors"],
                     funcs=self.menu.buttons["funcs"])
-
-        pygame.display.update()
+        self.label_text(coords=self.menu.text_label_title["coords"],
+                        text=self.menu.text_label_title["text"],
+                        font=self.menu.text_label_title["font"],
+                        color=self.menu.text_label_title["color"])
+        #pygame.display.update()
         pygame.display.set_caption("Menu")
         self.clock = pygame.time.Clock()
 
@@ -52,6 +57,12 @@ class Main():
             onClicks=funcs
         )
 
+    def label_text(self, coords, text, font, color):
+        f = font
+        res_label = f.render(text, True, color)
+        self.display.blit(res_label, coords)
+        pygame.display.update()
+
     def game_quit(self):
         self.running = 0
 
@@ -59,15 +70,12 @@ class Main():
         self.type_display = "game"
 
     def show_menu(self):
-        while self.running and self.type_display == "menu":
+        while self.running:
             events = pygame.event.get()
             self.clock.tick(self.fps)
 
-            self.display.fill(self.colors["dark"])
-
             for event in events:
-                if event.type == pygame.QUIT:
-                    self.running = False
+                if event.type == pygame.QUIT: self.running = False
             pygame_widgets.update(events)
             pygame.display.update()
 
