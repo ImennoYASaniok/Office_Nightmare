@@ -24,22 +24,11 @@ class Main():
             "dark": (67, 40, 24)
         }
 
-        self.display.fill(self.colors["dark"])
+        self.init_menu()
 
-        self.menu = Menu(self, self.colors)
-        self.button(coords=self.menu.buttons["coords"],
-                    layout=self.menu.buttons["layout"],
-                    texts=self.menu.buttons["texts"],
-                    fonts=self.menu.buttons["fonts"],
-                    colors=self.menu.buttons["colors"],
-                    funcs=self.menu.buttons["funcs"])
-        self.label_text(coords=self.menu.text_label_title["coords"],
-                        text=self.menu.text_label_title["text"],
-                        font=self.menu.text_label_title["font"],
-                        color=self.menu.text_label_title["color"])
-        #pygame.display.update()
-        pygame.display.set_caption("Menu")
+        pygame.display.set_caption("Office Nightmare")
         self.clock = pygame.time.Clock()
+
 
     def button(self, coords, layout, texts, fonts, colors, funcs):
             self.btn_array = ButtonArray(
@@ -57,11 +46,28 @@ class Main():
             onClicks=funcs
         )
 
+
     def label_text(self, coords, text, font, color):
         f = font
         res_label = f.render(text, True, color)
         self.display.blit(res_label, coords)
         pygame.display.update()
+
+
+    def init_menu(self):
+        self.display.fill(self.colors["dark"])
+        self.menu = Menu(self, self.colors)
+        self.button(coords=self.menu.buttons["coords"],
+                    layout=self.menu.buttons["layout"],
+                    texts=self.menu.buttons["texts"],
+                    fonts=self.menu.buttons["fonts"],
+                    colors=self.menu.buttons["colors"],
+                    funcs=self.menu.buttons["funcs"])
+        self.label_text(coords=self.menu.text_label_title["coords"],
+                        text=self.menu.text_label_title["text"],
+                        font=self.menu.text_label_title["font"],
+                        color=self.menu.text_label_title["color"])
+
 
     def game_quit(self):
         self.running = 0
